@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<!--用label 来显示单选框，复选框右边的文字-->
+
 <!--复选框-->
 <div id='example-3'>
     <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
@@ -28,7 +30,44 @@
     })
 </script>
 
+<!--单选按钮-->
+<div id="example-5">
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>Picked: {{ picked }}</span>
+</div>
+<script>
+    new Vue({
+        el: '#example-5',
+        data: {
+            picked: ''
+        }
+    })
+</script>
 
+<!--选择列表-->
+<div id="example-6">
+    <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+
+<script>
+    new Vue({
+        el: '#example-6',
+        data: {
+            selected: ''
+        }
+    })
+</script>
 
 </body>
 </html>
