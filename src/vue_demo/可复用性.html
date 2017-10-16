@@ -26,5 +26,47 @@
     var component = new Component() // => "hello from mixin!"
 </script>
 
+<!--选项合并-->
+<script>
+    var mixin = {
+        created: function () {
+            console.log('混合对象的钩子被调用')
+        }
+    }
+    new Vue({
+        mixins: [mixin],
+        created: function () {
+            console.log('组件钩子被调用')
+        }
+    })
+</script>
+
+<script>
+    var mixin = {
+        methods: {
+            foo: function () {
+                console.log('foo')
+            },
+            conflicting: function () {
+                console.log('from mixin')
+            }
+        }
+    }
+    var vm = new Vue({
+        mixins: [mixin],
+        methods: {
+            bar: function () {
+                console.log('bar')
+            },
+            conflicting: function () {
+                console.log('from self')
+            }
+        }
+    })
+    vm.foo() // => "foo"
+    vm.bar() // => "bar"
+    vm.conflicting() // => "from self"
+</script>
+
 </body>
 </html>
