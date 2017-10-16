@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+
+<!--全局注册 global register-->
+<div id="example">
+    <my-component></my-component>
+</div>
+
+<script>
+    // register component 注册组件
+    Vue.component('my-component',{
+        template:'<div>a custom component</div>'
+    })
+
+    new Vue({
+        el:'#example'
+    })
+</script>
+
+<!--局部注册-->
+<div id="example-1">
+    <my-component-1></my-component-1>
+</div>
+
+
+<script>
+    var Child = {
+        template:'<div>other custom component</div>'
+    }
+    new Vue({
+        el:'#example-1',
+        components:{
+            // <my-component> 将只在父组件模板中可用
+            'my-component-1': Child
+        }
+    })
+</script>
+
+</body>
+</html>
