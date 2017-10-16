@@ -148,11 +148,13 @@
 </p>
 <div id="counter-event-example">
     <p>{{ total }}</p>
+    <!--不能用 $on 侦听子组件释放的事件，而必须在模板里直接用 v-on 绑定-->
     <button-counter v-on:increment = "incrementTotal"></button-counter>
     <button-counter v-on:increment = "incrementTotal"></button-counter>
 </div>
 
 <script>
+//    组件定义
     Vue.component('button-counter',{
         template:'<button v-on:click="incrementCounter">{{ counter }}</button>',
         data:function () {
@@ -163,6 +165,7 @@
         methods:{
             incrementCounter: function () {
                 this.counter += 1
+//                使用 $emit(eventName) 触发事件
                 this.$emit('increment')
             }
         }
